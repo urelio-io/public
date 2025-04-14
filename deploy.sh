@@ -1,7 +1,7 @@
 #!/bin/sh
 aws iam create-user --user-name urelio_cspm && \
 aws iam attach-user-policy --user-name urelio_cspm --policy-arn arn:aws:iam::aws:policy/SecurityAudit && \
-cat '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["ses:DescribeActiveReceiptRuleSet","athena:GetWorkGroup","logs:DescribeLogGroups","logs:DescribeMetricFilters","elastictranscoder:ListPipelines","elasticfilesystem:DescribeFileSystems","servicequotas:ListServiceQuotas"],"Resource":"*"}]}' > urelio-cspm-credentials.json && \
+echo '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["ses:DescribeActiveReceiptRuleSet","athena:GetWorkGroup","logs:DescribeLogGroups","logs:DescribeMetricFilters","elastictranscoder:ListPipelines","elasticfilesystem:DescribeFileSystems","servicequotas:ListServiceQuotas"],"Resource":"*"}]}' > urelio-cspm-credentials.json && \
 policy_arn=$(aws iam create-policy \
     --policy-name urelio_cspmSupplemental \
     --policy-document file://urelio_cspmSupplementalPolicy.json \
