@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Creates a role (UrelioAuditor) trusted by Urelio's AWS account"
+
+Resources:
+  UrelioAuditorRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: UrelioAuditor
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "arn:aws:iam::905418172355:root"
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/SecurityAudit
+      Policies:
+        - PolicyName: UrelioAuditorInline
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ses:DescribeActiveReceiptRuleSet
+                  - athena:GetWorkGroup
+                  - logs:DescribeLogGroups
+                  - logs:DescribeMetricFilters
+                  - elastictranscoder:ListPipelines
+                  - elasticfilesystem:DescribeFileSystems
+                  - servicequotas:ListServiceQuotas
+                Resource: "*"
