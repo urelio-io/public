@@ -1,0 +1,1 @@
+[![Launch Stack](https://d1.awsstatic.com/cloudformation-templates/LaunchStack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://raw.githubusercontent.com/urelio-io/public/refs/heads/main/aws-cf-template.yaml&stackName=UrelioAuditor)
